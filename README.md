@@ -1,7 +1,6 @@
 
 ---
 
-```markdown
 # Plataforma Predictiva de Ciencia de Materiales: Módulo de Young y Límite Elástico en MPEAs
 
 Este proyecto forma parte de un portafolio académico enfocado en la Ingeniería de Materiales. Su objetivo principal es predecir propiedades mecánicas clave (Módulo de Young y Límite Elástico) de aleaciones de alta entropía y composición múltiple (MPEAs) a partir de su fórmula estequiométrica y condiciones de procesamiento, mitigando la necesidad de pruebas físicas destructivas.
