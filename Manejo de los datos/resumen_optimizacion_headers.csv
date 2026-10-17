@@ -1,0 +1,19 @@
+﻿Num_Headers (k),Filas_Completas,Porcentaje_Dataset (%),Puntos_Informacion (k*filas),Headers_Seleccionados
+1,1545,100.0,1545,ID
+2,1545,100.0,3090,ID | FORMULA
+3,1545,100.0,4635,ID | FORMULA | BCC/FCC/other
+4,1545,100.0,6180,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$)
+5,1545,100.0,7725,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi
+6,1545,100.0,9270,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year
+7,1535,99.35,10745,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title
+8,1416,91.65,11328,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method
+9,1347,87.18,12123,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure
+10,1258,81.42,12580,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure | Test temperature ($^\circ$C)
+11,1082,70.03,11902,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure | Test temperature ($^\circ$C) | Type of test
+12,1001,64.79,12012,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure | Test temperature ($^\circ$C) | Type of test | YS (MPa)
+13,550,35.6,7150,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure | Test temperature ($^\circ$C) | Type of test | YS (MPa) | Calculated Young modulus (GPa)
+14,305,19.74,4270,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure | Test temperature ($^\circ$C) | Type of test | YS (MPa) | Elongation (%) | UTS (MPa)
+15,172,11.13,2580,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure | Test temperature ($^\circ$C) | Type of test | YS (MPa) | Calculated Young modulus (GPa) | Elongation (%) | UTS (MPa)
+16,86,5.57,1376,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure | Test temperature ($^\circ$C) | Type of test | YS (MPa) | Calculated Young modulus (GPa) | Elongation (%) | UTS (MPa) | grain size ($\mu$m)
+17,28,1.81,476,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure | Test temperature ($^\circ$C) | Type of test | YS (MPa) | Calculated Young modulus (GPa) | Elongation (%) | UTS (MPa) | grain size ($\mu$m) | Exp. Young modulus (GPa)
+18,5,0.32,90,ID | FORMULA | BCC/FCC/other | Calculated Density (g/cm$^3$) | REFERENCE: doi | REFERENCE: year | REFERENCE: title | Processing method | Microstructure | Test temperature ($^\circ$C) | Type of test | YS (MPa) | Calculated Young modulus (GPa) | Elongation (%) | UTS (MPa) | HV | grain size ($\mu$m) | Exp. Young modulus (GPa)

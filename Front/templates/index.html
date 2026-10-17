@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MPEA Predictor | Ciencia de Materiales & Machine Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Fondo decorativo con mallas de gradiente -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <div class="app-layout">
+    <!-- Encabezado superior -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="brand">
+          <div class="brand-icon">
+            <!-- Icono SVG de retículo cristalino / átomo -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>MPEA Predictor</h1>
+            <p>Plataforma de Inferencia para Aleaciones de Alta Entropía</p>
+          </div>
+        </div>
+
+        <div class="header-badges">
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span class="status-label">Modelos XGBoost Activos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de navegación por pestañas -->
+      <nav class="tabs-nav" role="tablist">
+        <button id="tab-btn-young" class="tab-btn active" role="tab" aria-selected="true" data-tab="tab-young">
+          <svg class="tab-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+            <path d="M12 12v9"></path>
+            <path d="m8 17 4 4 4-4"></path>
+          </svg>
+          <span class="tab-title">Módulo de Young</span>
+          <span class="tab-badge">E (GPa)</span>
+        </button>
+
+        <button id="tab-btn-ys" class="tab-btn" role="tab" aria-selected="false" data-tab="tab-ys">
+          <svg class="tab-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m22 2-7 20-4-9-9-4Z"></path>
+            <path d="M22 2 11 13"></path>
+          </svg>
+          <span class="tab-title">Límite Elástico</span>
+          <span class="tab-badge">YS (MPa)</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+
+      <!-- =================================================================== -->
+      <!-- PESTAÑA 1: MÓDULO DE YOUNG -->
+      <!-- =================================================================== -->
+      <section id="tab-young" class="tab-pane active" role="tabpanel">
+        <div class="pane-grid">
+          <!-- Columna izquierda: Formulario de entradas -->
+          <div class="input-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="step-num">1</span>
+                <div>
+                  <h2>Parámetros de Entrada</h2>
+                  <p class="card-subtitle">Combinación de estequiometría y propiedades físicas externas</p>
+                </div>
+              </div>
+              <div class="model-metric-pill">
+                <span class="metric-name">R²</span>
+                <span class="metric-val">0.9969</span>
+                <span class="metric-divider">|</span>
+                <span class="metric-name">RMSE</span>
+                <span class="metric-val">2.53 GPa</span>
+              </div>
+            </div>
+
+            <!-- Accesos rápidos / Ejemplos -->
+            <div class="presets-section">
+              <span class="presets-label">Aleaciones de prueba rápida:</span>
+              <div class="preset-chips">
+                <button type="button" class="chip-btn" data-target="young" data-formula="Al0.25 Co1 Fe1 Ni1" data-density="7.9">
+                  Al0.25 CoFeNi (7.9 g/cm³)
+                </button>
+                <button type="button" class="chip-btn" data-target="young" data-formula="Al1 Co1 Fe1 Ni1" data-density="6.6">
+                  Al1 CoFeNi (6.6 g/cm³)
+                </button>
+                <button type="button" class="chip-btn" data-target="young" data-formula="Co1 Cr1 Fe1 Ni1" data-density="8.2">
+                  CoCrFeNi (8.2 g/cm³)
+                </button>
+                <button type="button" class="chip-btn" data-target="young" data-formula="Co1 Fe1 Ni1 Si0.25" data-density="7.7">
+                  CoFeNiSi0.25 (7.7 g/cm³)
+                </button>
+              </div>
+            </div>
+
+            <form id="form-young" class="app-form">
+              <!-- Bloque A: Entrada para la librería -->
+              <div class="form-fieldset">
+                <div class="fieldset-header">
+                  <span class="badge-source badge-library">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="16 18 22 12 16 6"></polyline>
+                      <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    Procesado por Librería (Matminer)
+                  </span>
+                  <span class="fieldset-desc">Genera 26 descriptores químicos y termodinámicos</span>
+                </div>
+
+                <div class="field-group">
+                  <label for="young-formula">
+                    Fórmula Química Estequiométrica
+                    <span class="required">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <input type="text" id="young-formula" name="formula" required placeholder="Ej. Al0.25 Co1 Fe1 Ni1" autocomplete="off" spellcheck="false">
+                  </div>
+                  <span class="field-help">Indica las proporciones molares de cada elemento químico.</span>
+                </div>
+              </div>
+
+              <!-- Bloque B: Entrada manual que no da la librería -->
+              <div class="form-fieldset">
+                <div class="fieldset-header">
+                  <span class="badge-source badge-manual">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    Campo Adicional Requerido (No provisto por librería)
+                  </span>
+                  <span class="fieldset-desc">Variable física observada o experimental</span>
+                </div>
+
+                <div class="field-group">
+                  <label for="young-density">
+                    Densidad Calculada (g/cm³)
+                    <span class="required">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <input type="number" id="young-density" name="density" required step="0.01" min="1.0" max="25.0" placeholder="Ej. 7.90">
+                    <span class="input-unit">g/cm³</span>
+                  </div>
+                  <span class="field-help">Densidad volumétrica teórica o calculada de la aleación.</span>
+                </div>
+              </div>
+
+              <button type="submit" id="btn-predict-young" class="btn-primary">
+                <span class="btn-spinner hidden"></span>
+                <span class="btn-text">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                  Calcular Descriptores y Predecir Módulo de Young
+                </span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Columna derecha: Resultados -->
+          <div class="output-card">
+            <div id="young-placeholder" class="result-placeholder">
+              <div class="placeholder-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </div>
+              <h3>Esperando Datos de Entrada</h3>
+              <p>Ingresa la estequiometría de la aleación y la densidad calculada para inferir el Módulo de Young mediante XGBoost.</p>
+            </div>
+
+            <div id="young-results" class="result-container hidden">
+              <!-- Valor principal -->
+              <div class="result-hero">
+                <span class="result-tag">Módulo de Young Predicho</span>
+                <div class="result-metric">
+                  <span id="young-val" class="metric-large">---</span>
+                  <span class="metric-unit">GPa</span>
+                </div>
+                <div class="result-confidence">
+                  <span class="confidence-badge">Margen RMSE: ± 2.53 GPa</span>
+                  <span class="formula-badge" id="young-formula-display">---</span>
+                </div>
+              </div>
+
+              <!-- Desglose elemental -->
+              <div class="breakdown-card">
+                <h4>Composición Elemental Calculada</h4>
+                <div id="young-elements-bars" class="elements-grid"></div>
+              </div>
+
+              <!-- Descriptores clave calculados por Matminer -->
+              <div class="descriptors-card">
+                <h4>Descriptores Físicos Extraídos (Matminer)</h4>
+                <div id="young-descriptors-grid" class="descriptors-grid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- PESTAÑA 2: LÍMITE ELÁSTICO -->
+      <!-- =================================================================== -->
+      <section id="tab-ys" class="tab-pane" role="tabpanel">
+        <div class="pane-grid">
+          <!-- Columna izquierda: Formulario de entradas -->
+          <div class="input-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="step-num">1</span>
+                <div>
+                  <h2>Parámetros de Entrada</h2>
+                  <p class="card-subtitle">Estequiometría química y condiciones de procesamiento/ensayo</p>
+                </div>
+              </div>
+              <div class="model-metric-pill">
+                <span class="metric-name">R²</span>
+                <span class="metric-val">0.7693</span>
+                <span class="metric-divider">|</span>
+                <span class="metric-name">RMSE</span>
+                <span class="metric-val">268.45 MPa</span>
+              </div>
+            </div>
+
+            <!-- Accesos rápidos / Ejemplos -->
+            <div class="presets-section">
+              <span class="presets-label">Aleaciones de prueba rápida:</span>
+              <div class="preset-chips">
+                <button type="button" class="chip-btn" data-target="ys" data-formula="Al0.25 Co1 Fe1 Ni1" data-temp="25" data-test="C" data-proc="CAST" data-cryst="FCC" data-micro="FCC">
+                  Al0.25CoFeNi (25°C, Compresión, CAST)
+                </button>
+                <button type="button" class="chip-btn" data-target="ys" data-formula="Al1 Co1 Cr1 Fe1 Ni1" data-temp="25" data-test="C" data-proc="CAST" data-cryst="BCC" data-micro="BCC">
+                  AlCoCrFeNi (25°C, Compresión, BCC)
+                </button>
+                <button type="button" class="chip-btn" data-target="ys" data-formula="Co1 Cr1 Fe1 Ni1" data-temp="25" data-test="T" data-proc="WROUGHT" data-cryst="FCC" data-micro="FCC">
+                  CoCrFeNi (25°C, Tracción, WROUGHT)
+                </button>
+              </div>
+            </div>
+
+            <form id="form-ys" class="app-form">
+              <!-- Bloque A: Entrada de fórmula (librería) -->
+              <div class="form-fieldset">
+                <div class="fieldset-header">
+                  <span class="badge-source badge-library">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="16 18 22 12 16 6"></polyline>
+                      <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    Procesado por Librería (Matminer)
+                  </span>
+                  <span class="fieldset-desc">Genera 42 descriptores químicos y termodinámicos</span>
+                </div>
+
+                <div class="field-group">
+                  <label for="ys-formula">
+                    Fórmula Química Estequiométrica
+                    <span class="required">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <input type="text" id="ys-formula" name="formula" required placeholder="Ej. Al0.5 Co1 Cr1 Fe1 Ni1" autocomplete="off" spellcheck="false">
+                  </div>
+                  <span class="field-help">Fórmula de los elementos constitutivos de la aleación multielemental.</span>
+                </div>
+              </div>
+
+              <!-- Bloque B: Entradas adicionales manuales -->
+              <div class="form-fieldset">
+                <div class="fieldset-header">
+                  <span class="badge-source badge-manual">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    Campos de Petición Adicionales (No provistos por librería)
+                  </span>
+                  <span class="fieldset-desc">Variables metalúrgicas, térmicas y de ensayo mecánico</span>
+                </div>
+
+                <div class="fields-row-2">
+                  <div class="field-group">
+                    <label for="ys-temp">
+                      Temperatura de Prueba (°C)
+                      <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                      <input type="number" id="ys-temp" name="temp" required step="1" value="25" placeholder="25">
+                      <span class="input-unit">°C</span>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <label for="ys-test-type">
+                      Tipo de Ensayo Mecánico
+                      <span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                      <select id="ys-test-type" name="tipo_ensayo" required>
+                        <option value="C" selected>Compresión (C)</option>
+                        <option value="T">Tracción (T)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="fields-row-3">
+                  <div class="field-group">
+                    <label for="ys-proc">
+                      Método de Procesamiento&nbsp;<span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                      <select id="ys-proc" name="metodo_proc" required>
+                        <option value="CAST" selected>Fundición (CAST)</option>
+                        <option value="WROUGHT">Forjado / Deformado (WROUGHT)</option>
+                        <option value="POWDER">Pulvimetalurgia (POWDER)</option>
+                        <option value="OTHER">Otro método</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <label for="ys-cryst">
+                      Estructura Cristalina
+                      <span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                      <select id="ys-cryst" name="est_cristalina" required>
+                        <option value="FCC" selected>FCC (Cúbica cara centrada)</option>
+                        <option value="BCC">BCC (Cúbica cuerpo centrado)</option>
+                        <option value="OTHER">Otra estructura</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <label for="ys-micro">
+                      Microestructura
+                      <span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                      <select id="ys-micro" name="microestructura" required>
+                        <option value="FCC" selected>FCC simple</option>
+                        <option value="BCC">BCC simple</option>
+                        <option value="BCC+FCC">BCC + FCC</option>
+                        <option value="FCC+BCC">FCC + BCC</option>
+                        <option value="BCC+HCP">BCC + HCP</option>
+                        <option value="FCC+B2+Sec.">FCC + B2 + Fase Secundaria</option>
+                        <option value="OTHER">Otra microestructura</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" id="btn-predict-ys" class="btn-primary">
+                <span class="btn-spinner hidden"></span>
+                <span class="btn-text">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                  Calcular Descriptores y Predecir Límite Elástico
+                </span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Columna derecha: Resultados -->
+          <div class="output-card">
+            <div id="ys-placeholder" class="result-placeholder">
+              <div class="placeholder-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="m22 2-7 20-4-9-9-4Z"></path>
+                  <path d="M22 2 11 13"></path>
+                </svg>
+              </div>
+              <h3>Esperando Datos de Entrada</h3>
+              <p>Especifica la fórmula y las condiciones térmicas y de ensayo para predecir el límite elástico (Yield Strength).</p>
+            </div>
+
+            <div id="ys-results" class="result-container hidden">
+              <!-- Valor principal -->
+              <div class="result-hero">
+                <span class="result-tag">Límite Elástico (YS) Predicho</span>
+                <div class="result-metric">
+                  <span id="ys-val" class="metric-large">---</span>
+                  <span class="metric-unit">MPa</span>
+                </div>
+                <div class="result-confidence">
+                  <span class="confidence-badge">Margen RMSE: ± 268.45 MPa</span>
+                  <span class="formula-badge" id="ys-formula-display">---</span>
+                </div>
+              </div>
+
+              <!-- Desglose elemental -->
+              <div class="breakdown-card">
+                <h4>Composición Elemental Calculada</h4>
+                <div id="ys-elements-bars" class="elements-grid"></div>
+              </div>
+
+              <!-- Descriptores clave calculados por Matminer -->
+              <div class="descriptors-card">
+                <h4>Descriptores Físicos y Termodinámicos Extraídos (Matminer)</h4>
+                <div id="ys-descriptors-grid" class="descriptors-grid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <p>MPEA Predictor | Modelos XGBoost con Featurización Composicional Avanzada (Matminer & Pymatgen)</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Notificación Toast -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

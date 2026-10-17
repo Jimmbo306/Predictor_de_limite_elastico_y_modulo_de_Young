@@ -1,0 +1,37 @@
+{
+    "variable_objetivo": "Calculated Young modulus (GPa)",
+    "rendimiento": {
+        "R2": 0.9969,
+        "RMSE": 2.53
+    },
+    "cantidad_variables": 27,
+    "variables_entrada": [
+        "MagpieData mean Electronegativity",
+        "MagpieData mean NUnfilled",
+        "MagpieData mean NpValence",
+        "MagpieData mean NdValence",
+        "MagpieData range MendeleevNumber",
+        "MagpieData maximum MendeleevNumber",
+        "MagpieData mean NValence",
+        "MagpieData mode GSvolume_pa",
+        "MagpieData maximum MeltingT",
+        "Calculated Density (g/cm$^3$)",
+        "MagpieData minimum Number",
+        "frac s valence electrons",
+        "MagpieData mean NpUnfilled",
+        "Cr",
+        "MagpieData mean NsValence",
+        "MagpieData mean MeltingT",
+        "MagpieData range Electronegativity",
+        "MagpieData mean Number",
+        "MagpieData mean MendeleevNumber",
+        "MagpieData mean Row",
+        "MagpieData avg_dev NdValence",
+        "frac p valence electrons",
+        "Mo",
+        "MagpieData maximum CovalentRadius",
+        "MagpieData avg_dev MeltingT",
+        "frac d valence electrons",
+        "MagpieData avg_dev Electronegativity"
+    ]
+}

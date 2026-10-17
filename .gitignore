@@ -1,0 +1,12 @@
+# Entornos virtuales y dependencias
+.venv/
+venv/
+env/
+
+# Archivos compilados y de caché
+__pycache__/
+*.pyc
+
+# Configuraciones del editor y sistema
+.vscode/
+.DS_Store
