@@ -18,6 +18,9 @@ Para compensar la escasez de datos, se aplicó una estrategia de **aumento de ca
 
 ## Inicio Rápido (TL;DR)
 
+Hay una app para una ejecución rápida en streamlit:
+https://predictordelimiteelasticoymodulodeyoung-xxtmt8n2hfaxb2em5qlaat.streamlit.app/
+
 Si deseas interactuar con la plataforma y realizar inferencias rápidas sin necesidad de reentrenar los modelos, sigue estos sencillos pasos:
 
 **1. Instalar dependencias:** 
