@@ -1,7 +1,6 @@
 
 ---
 
-```markdown
 # Plataforma Predictiva de Ciencia de Materiales: Módulo de Young y Límite Elástico en MPEAs
 
 Este proyecto forma parte de un portafolio académico enfocado en la Ingeniería de Materiales. Su objetivo principal es predecir propiedades mecánicas clave (Módulo de Young y Límite Elástico) de aleaciones de alta entropía y composición múltiple (MPEAs) a partir de su fórmula estequiométrica y condiciones de procesamiento, mitigando la necesidad de pruebas físicas destructivas.
@@ -25,6 +24,7 @@ Si deseas interactuar con la plataforma y realizar inferencias rápidas sin nece
 Las versiones exactas recomendadas para asegurar la compatibilidad (especialmente con `matminer` y `pymatgen`) se encuentran en el archivo de requerimientos.
 ```bash
 pip install -r requirements.txt
+<img width="1907" height="860" alt="Screenshot 2026-10-17 122106" src="https://github.com/user-attachments/assets/faa11cc6-a1e5-4466-bb86-3c1164d9707e" />
 
 ```
 
@@ -41,9 +41,15 @@ En la interfaz web encontrarás opciones y **presets ya incluidos** (ejemplos de
 
 
 *Figura 1: Interfaz principal con tema oscuro y presets de aleaciones cargados.*
+<img width="1907" height="860" alt="Screenshot 2026-10-17 122106" src="https://github.com/user-attachments/assets/6eceae9b-4321-46e4-adf1-82c38e409e2d" />
+<img width="1885" height="867" alt="Screenshot 2026-10-17 122143" src="https://github.com/user-attachments/assets/3a281127-c4b3-4816-8b70-856d5d738893" />
+
 
 
 *Figura 2: Resultados de inferencia en tiempo real para Módulo de Young y Límite Elástico.*
+<img width="1881" height="860" alt="Screenshot 2026-10-17 122122" src="https://github.com/user-attachments/assets/423c298e-033e-47c1-b8fb-822bad9694c7" />
+<img width="1877" height="858" alt="Screenshot 2026-10-17 122131" src="https://github.com/user-attachments/assets/1c351502-ce00-4cbd-b8e9-8aec20e91f2c" />
+
 
 **Nota para replicación:** Si deseas inspeccionar, modificar o reentrenar los modelos abriendo los archivos `.ipynb` (Fase 3), se recomienda **ejecutarlos en Google Colab** para aprovechar la aceleración en la nube y agilizar el proceso.
 
